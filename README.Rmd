@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# quoter
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+The `quoter` R package generates a random quote sourced from various sources. You can use this, say, to output an inspirational quote every time your R starts.
+
+## Installation
+
+You can install the released version of quoter with
+
+``` r
+remotes::install_github("emitanaka/quoter")
+```
+
+## Example
+
+Get a random quote that are sourced from [brainy](brainyquote.com), [statquotes](https://github.com/friendly/statquotes) or [dadjoke](https://github.com/jhollist/dadjoke).
+
+```{r example}
+quoter::quotes(source = "brainy")
+```
+
+You can get a decorated one. The color output will show on terminal.
+
+TODO: need to add dark/light themes. Also ability to customise output easily.
+
+```{r }
+quoter::decorate(quoter::quotes())
+```
+
+## Show quote on R start-up
+
+To show quote on R start-up, you will need a special function ot the `.Rprofile` file. The easiest way to access the `.Rprofile` is to use 
+```{r, eval=F}
+usethis::edit_r_profile()
+```
+
+In the `.Rprofile` file add below to get a quotation for every start-up.
+```{r, eval=F}
+.First <- function() {
+  quoter::decorate(quoter::quotes())
+}
+```
+
+
